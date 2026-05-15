@@ -1,7 +1,7 @@
 import logging
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from Harvester import News
+from BackEnd.Harvester import News
 
 engine = News()
 app = FastAPI()

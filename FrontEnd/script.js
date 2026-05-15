@@ -30,7 +30,14 @@ async function RenderNews(New_list) {
             Neg_scr +=1
         }
 
-            History_div.innerHTML += `<h3>${article.title}</h3>`
+            History_div.innerHTML += `
+            <div class="article-card ${article.sentiment}">
+                <h4 class="article-title">${article.title}</h4>
+                <div class="article-meta">
+                    <span class="badge">${article.sentiment}</span>
+                </div>
+            </div>
+            `;
         }
     )
 
