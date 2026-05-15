@@ -4,7 +4,7 @@ import requests
 import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, sessionmaker
-logging.basicConfig(filename="Harvest.log", level=logging.INFO)
+logging.basicConfig(filename="database/Harvest.log", level=logging.INFO)
 
 load_dotenv()
 
@@ -23,7 +23,7 @@ class News:
     def __init__(self):
         self.api = os.getenv("API_KEY")
 
-        engine = create_engine("sqlite:///Harvester.db")
+        engine = create_engine("sqlite:///database/Harvester.db")
         base.metadata.create_all(engine)
         self.session = sessionmaker(bind=engine)
 
