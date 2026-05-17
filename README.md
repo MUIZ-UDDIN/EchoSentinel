@@ -1,5 +1,5 @@
 EchoSentinel Dashboard UI
-<img width="3809" height="1424" alt="image" src="https://github.com/user-attachments/assets/a6a451ac-ec49-4e74-bc9d-9e7821a3471e" />
+<img width="3839" height="1976" alt="image" src="https://github.com/user-attachments/assets/b58d6fcc-da2e-44e7-b4fd-658c9b0c0e1e" />
 
 Description:
        An autonomous end-to-end sentiment analysis platform. Features a Python/FastAPI backend, SQLAlchemy persistence, and a real-time JS dashboard to monitor market trends from global news sources.
