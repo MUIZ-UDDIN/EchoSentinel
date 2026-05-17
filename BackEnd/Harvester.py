@@ -4,6 +4,8 @@ import requests
 import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, sessionmaker
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer #type:ignore
+
 logging.basicConfig(filename="database/Harvest.log", level=logging.INFO)
 
 load_dotenv()
@@ -26,26 +28,19 @@ class News:
         engine = create_engine("sqlite:///database/Harvester.db")
         base.metadata.create_all(engine)
         self.session = sessionmaker(bind=engine)
+        self.Sentiment_analyzer = SentimentIntensityAnalyzer()
 
-        self.Pos_words = ["positive", "good", "excellent", "growth", "increased", "great", "success"]
-        self.Neg_words = ["bad", "negative", "fail","crisis","lawsuit", "drop","dead", "sad"]
+
 
     def sentiment_analysis(self, sentiments: str) -> str:
 
-        score = 0
-        clear_words = sentiments.lower()
-        for Pos_word in self.Pos_words:
-            if Pos_word in clear_words:
-                score += 1
-        
-        for Neg_word in self.Neg_words:
-            if Neg_word in clear_words:
-                score -= 1
+        analyzer = self.Sentiment_analyzer.polarity_scores(sentiments)
+        compound = analyzer["compound"]
 
-        if score > 0:
+        if compound >= 0.05:
             return "POSITIVE"
         
-        elif score < 0:
+        elif compound <= -0.05:
             return "NEGATIVE"
 
         else:
