@@ -37,7 +37,7 @@ async function RenderNews(New_list) {
                     <span class="badge">${article.sentiment}</span>
                 </div>
             </div>
-            `;
+            `
         }
     )
 
