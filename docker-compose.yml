@@ -7,15 +7,12 @@ services:
         env_file:
           - .env
         volumes:
-          - db-data:/app/database
+          - ./database:/app/database
 
-      whitcher_app:
+      whitcher:
         build: .
         command: python BackEnd/whitcher.py
         env_file:
           - .env
         volumes:
-          - db-data:/app/database
-
-volumes:
-  db-data:
+          - ./database:/app/database
